@@ -1,0 +1,151 @@
+import { StyleSheet, Platform } from 'react-native';
+
+export const Colors = {
+  placeholder: '#999',
+  primary: '#007AFF',
+  background: '#f5f5f5',
+  text: '#333',
+  inputBackground: '#f8f7f7',
+  inputBorder: '#ddd',
+  inputText: '#121111',
+  cardBackground: '#ffffff',
+  subText: '#666',
+  avatarBackground: '#E3F2FD',
+};
+
+export const GlobalStyles = StyleSheet.create({
+  flex1: { flex: 1, backgroundColor: Colors.background },
+  centerAll: { flex: 1, justifyContent: 'center', padding: 20 },
+
+  loginTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    textAlign: 'center',
+    color: Colors.text,
+  },
+  input: {
+    backgroundColor: Colors.inputBackground,
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: Colors.inputBorder,
+    color: Colors.inputText,
+  },
+  primaryButton: {
+    backgroundColor: Colors.primary,
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: { color: '#fff', fontSize: 18, fontWeight: '600' },
+
+  header: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
+    color: Colors.text,
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+  },
+  card: {
+    backgroundColor: Colors.cardBackground,
+    width: '48%',
+    padding: 20,
+    borderRadius: 15,
+    marginBottom: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+      },
+      android: { elevation: 3 },
+    }),
+  },
+  iconBox: {
+    backgroundColor: '#6366f1',
+    padding: 8,
+    borderRadius: 8,
+    marginBottom: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardValue: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  cardLabel: {
+    color: '#666',
+    marginTop: 4,
+    textAlign: 'center',
+  },
+
+  userRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.cardBackground,
+    marginHorizontal: 16,
+    marginVertical: 6,
+    padding: 16,
+    borderRadius: 16,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.08,
+        shadowRadius: 4,
+      },
+      android: { elevation: 2 },
+    }),
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: Colors.avatarBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  avatarText: {
+    color: Colors.primary,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  userName: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: Colors.text,
+  },
+  userEmail: {
+    color: Colors.subText,
+    fontSize: 14,
+    marginTop: 2,
+  },
+  fab: {
+    position: 'absolute',
+    right: 20,
+    bottom: 30,
+    backgroundColor: Colors.primary,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 6,
+    shadowColor: Colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+  },
+});
