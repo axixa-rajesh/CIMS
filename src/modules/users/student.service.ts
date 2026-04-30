@@ -21,7 +21,7 @@ export class StudentService {
     return await this.studentRepository.find();
   }
 
-  async findOne(id: number): Promise<Student> {
+  async findOne(id: string): Promise<Student> {
     const student = await this.studentRepository.findOne({ where: { id } });
     if (!student) {
       throw new NotFoundException(`Student with ID ${id} not found`);
@@ -29,13 +29,13 @@ export class StudentService {
     return student;
   }
 
-  async update(id: number, updateStudentDto: UpdateStudentDto): Promise<Student> {
+  async update(id: string, updateStudentDto: UpdateStudentDto): Promise<Student> {
     const student = await this.findOne(id);
     const updated = Object.assign(student, updateStudentDto);
     return await this.studentRepository.save(updated);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     const student = await this.findOne(id);
     await this.studentRepository.remove(student);
   }

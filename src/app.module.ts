@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentsModule } from './modules/users/students.module';
+import { AdmissionModule } from './modules/admission/admission.module';
+import { AcademicModule } from './modules/academic/academic.module';
+import { TeachersModule } from './modules/teachers/teachers.module';
 
 @Module({
   imports: [
@@ -12,7 +15,7 @@ import { StudentsModule } from './modules/users/students.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST || 'localhost',
+      host: process.env.DB_HOST || '127.0.0.1',
       port: parseInt(process.env.DB_PORT || '3306', 10),
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || '',
@@ -21,6 +24,9 @@ import { StudentsModule } from './modules/users/students.module';
       synchronize: true,
     }),
     StudentsModule,
+    AdmissionModule,
+    AcademicModule,
+    TeachersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

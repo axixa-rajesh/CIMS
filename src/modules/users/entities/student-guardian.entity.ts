@@ -6,10 +6,10 @@ export class StudentGuardian {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('uuid')
+  @Column({ type: 'varchar', length: 36 })
   student_id: string;
 
-  @ManyToOne(() => Student)
+  @ManyToOne(() => Student, (student) => student.guardians)
   @JoinColumn({ name: 'student_id' })
   student: Student;
 

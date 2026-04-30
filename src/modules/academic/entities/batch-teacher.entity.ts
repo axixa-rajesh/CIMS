@@ -5,27 +5,27 @@ import { Subject } from './subject.entity';
 
 @Entity('batch_teachers')
 export class BatchTeacher {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  batch_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  batch_id: string;
 
-  @ManyToOne(() => Batch)
+  @ManyToOne(() => Batch, (batch) => batch.batchTeachers)
   @JoinColumn({ name: 'batch_id' })
   batch: Batch;
 
-  @Column()
-  teacher_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  teacher_id: string;
 
-  @ManyToOne(() => Teacher)
+  @ManyToOne(() => Teacher, (teacher) => teacher.batchTeachers)
   @JoinColumn({ name: 'teacher_id' })
   teacher: Teacher;
 
-  @Column()
-  subject_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  subject_id: string;
 
-  @ManyToOne(() => Subject)
+  @ManyToOne(() => Subject, (subject) => subject.batchTeachers)
   @JoinColumn({ name: 'subject_id' })
   subject: Subject;
 

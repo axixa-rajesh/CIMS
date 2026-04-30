@@ -1,12 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Institute } from './institute.entity';
 import { Branch } from './branch.entity';
-import { Subject } from './subject.entity';
-import { Batch } from './batch.entity';
-import { Enrollment } from './enrollment.entity';
+import { Student } from '../../users/entities/student.entity';
+import { Admission } from '../../admission/entities/admission.entity';
 
-@Entity('courses')
-export class Course {
+@Entity('academic_sessions')
+export class AcademicSession {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -27,14 +26,14 @@ export class Course {
   @Column()
   name: string;
 
-  @Column({ unique: true })
-  code: string;
+  @Column({ type: 'date', nullable: true })
+  start_date: Date;
 
-  @Column({ type: 'text', nullable: true })
-  description: string;
+  @Column({ type: 'date', nullable: true })
+  end_date: Date;
 
-  @Column({ nullable: true })
-  duration: string;
+  @Column({ default: false })
+  is_current: boolean;
 
   @Column({ default: 'ACTIVE' })
   status: string;
@@ -45,12 +44,9 @@ export class Course {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Subject, (subject) => subject.course)
-  subjects: Subject[];
+  @OneToMany(() => Student, (student) => student.session)
+  students: Student[];
 
-  @OneToMany(() => Batch, (batch) => batch.course)
-  batches: Batch[];
-
-  @OneToMany(() => Enrollment, (enrollment) => enrollment.course)
-  enrollments: Enrollment[];
+  @OneToMany(() => Admission, (admission) => admission.session)
+  admissions: Admission[];
 }

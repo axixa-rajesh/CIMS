@@ -4,18 +4,18 @@ import { Student } from '../../users/entities/student.entity';
 
 @Entity('batch_students')
 export class BatchStudent {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  batch_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  batch_id: string;
 
-  @ManyToOne(() => Batch)
+  @ManyToOne(() => Batch, (batch) => batch.batchStudents)
   @JoinColumn({ name: 'batch_id' })
   batch: Batch;
 
-  @Column()
-  student_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  student_id: string;
 
   @ManyToOne(() => Student)
   @JoinColumn({ name: 'student_id' })

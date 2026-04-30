@@ -2,35 +2,40 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 import { Student } from '../../users/entities/student.entity';
 import { Course } from './course.entity';
 import { Batch } from './batch.entity';
+import { AcademicSession } from './academic-session.entity';
 
 @Entity('enrollments')
 export class Enrollment {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  student_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  student_id: string;
 
   @ManyToOne(() => Student)
   @JoinColumn({ name: 'student_id' })
   student: Student;
 
-  @Column()
-  course_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  course_id: string;
 
-  @ManyToOne(() => Course)
+  @ManyToOne(() => Course, (course) => course.enrollments)
   @JoinColumn({ name: 'course_id' })
   course: Course;
 
-  @Column({ nullable: true })
-  batch_id: number;
+  @Column({ type: 'varchar', length: 36, nullable: true })
+  batch_id: string;
 
-  @ManyToOne(() => Batch, { nullable: true })
+  @ManyToOne(() => Batch, (batch) => batch.enrollments, { nullable: true })
   @JoinColumn({ name: 'batch_id' })
   batch: Batch;
 
-  @Column()
-  session_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  session_id: string;
+
+  @ManyToOne(() => AcademicSession)
+  @JoinColumn({ name: 'session_id' })
+  session: AcademicSession;
 
   @Column({ type: 'date' })
   enrollment_date: Date;

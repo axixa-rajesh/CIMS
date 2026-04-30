@@ -1,26 +1,44 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Course } from './course.entity';
+import { Institute } from './institute.entity';
+import { Branch } from './branch.entity';
+import { AcademicSession } from './academic-session.entity';
+import { BatchStudent } from './batch-student.entity';
+import { BatchTeacher } from './batch-teacher.entity';
+import { Enrollment } from './enrollment.entity';
 
 @Entity('batches')
 export class Batch {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  institute_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  institute_id: string;
 
-  @Column()
-  branch_id: number;
+  @ManyToOne(() => Institute)
+  @JoinColumn({ name: 'institute_id' })
+  institute: Institute;
 
-  @Column()
-  course_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  branch_id: string;
 
-  @ManyToOne(() => Course)
+  @ManyToOne(() => Branch)
+  @JoinColumn({ name: 'branch_id' })
+  branch: Branch;
+
+  @Column({ type: 'varchar', length: 36 })
+  course_id: string;
+
+  @ManyToOne(() => Course, (course) => course.batches)
   @JoinColumn({ name: 'course_id' })
   course: Course;
 
-  @Column()
-  session_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  session_id: string;
+
+  @ManyToOne(() => AcademicSession)
+  @JoinColumn({ name: 'session_id' })
+  session: AcademicSession;
 
   @Column()
   name: string;
@@ -48,4 +66,13 @@ export class Batch {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => BatchStudent, (batchStudent) => batchStudent.batch)
+  batchStudents: BatchStudent[];
+
+  @OneToMany(() => BatchTeacher, (batchTeacher) => batchTeacher.batch)
+  batchTeachers: BatchTeacher[];
+
+  @OneToMany(() => Enrollment, (enrollment) => enrollment.batch)
+  enrollments: Enrollment[];
 }

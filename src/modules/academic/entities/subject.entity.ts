@@ -1,15 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Course } from './course.entity';
+import { BatchTeacher } from './batch-teacher.entity';
 
 @Entity('subjects')
 export class Subject {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  course_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  course_id: string;
 
-  @ManyToOne(() => Course)
+  @ManyToOne(() => Course, (course) => course.subjects)
   @JoinColumn({ name: 'course_id' })
   course: Course;
 
@@ -30,4 +31,7 @@ export class Subject {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => BatchTeacher, (batchTeacher) => batchTeacher.subject)
+  batchTeachers: BatchTeacher[];
 }

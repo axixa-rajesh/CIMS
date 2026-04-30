@@ -1,6 +1,6 @@
-import { IsString, IsEmail, IsOptional, IsEnum, IsDateString, IsNotEmpty, IsUUID } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsEmail, IsUUID, IsDateString } from 'class-validator';
 
-export class CreateStudentDto {
+export class CreateTeacherDto {
   @IsUUID()
   @IsNotEmpty()
   institute_id: string;
@@ -10,16 +10,12 @@ export class CreateStudentDto {
   branch_id: string;
 
   @IsUUID()
-  @IsNotEmpty()
-  user_id: string;
-
-  @IsString()
-  @IsNotEmpty()
-  admission_no: string;
-
-  @IsString()
   @IsOptional()
-  roll_no?: string;
+  user_id?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  employee_code: string;
 
   @IsString()
   @IsNotEmpty()
@@ -31,11 +27,7 @@ export class CreateStudentDto {
 
   @IsString()
   @IsOptional()
-  gender?: string;
-
-  @IsDateString()
-  @IsOptional()
-  dob?: string;
+  phone?: string;
 
   @IsEmail()
   @IsOptional()
@@ -43,11 +35,11 @@ export class CreateStudentDto {
 
   @IsString()
   @IsOptional()
-  phone?: string;
+  qualification?: string;
 
-  @IsString()
+  @IsDateString()
   @IsOptional()
-  address?: string;
+  joining_date?: string;
 
   @IsString()
   @IsOptional()

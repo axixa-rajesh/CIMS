@@ -1,15 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Admission } from './admission.entity';
 
 @Entity('admission_leads')
 export class AdmissionLead {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  institute_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  institute_id: string;
 
-  @Column()
-  branch_id: number;
+  @Column({ type: 'varchar', length: 36 })
+  branch_id: string;
 
   @Column()
   student_name: string;
@@ -37,4 +38,7 @@ export class AdmissionLead {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Admission, (admission) => admission.lead)
+  admissions: Admission[];
 }
