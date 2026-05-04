@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Branch } from './branch.entity';
-import { Student } from '../../users/entities/student.entity';
+import { Student } from '../../students/entities/student.entity';
+import { Course } from '../../courses/entities/course.entity';
 
 @Entity('institutes')
 export class Institute {
@@ -48,4 +49,7 @@ export class Institute {
 
   @OneToMany(() => Student, (student) => student.institute)
   students: Student[];
+
+  @OneToMany(() => Course, (course) => course.institute)
+  courses: Course[];
 }

@@ -1,7 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Institute } from './institute.entity';
-import { Student } from '../../users/entities/student.entity';
-import { Admission } from '../../admission/entities/admission.entity';
+import { Student } from '../../students/entities/student.entity';
+import { Admission } from '../../admissions/entities/admission.entity';
+import { Course } from '../../courses/entities/course.entity';
 
 @Entity('branches')
 export class Branch {
@@ -50,4 +51,7 @@ export class Branch {
 
   @OneToMany(() => Admission, (admission) => admission.branch)
   admissions: Admission[];
+
+  @OneToMany(() => Course, (course) => course.branch)
+  courses: Course[];
 }

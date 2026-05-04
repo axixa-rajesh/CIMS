@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Institute } from './institute.entity';
 import { Branch } from './branch.entity';
-import { Student } from '../../users/entities/student.entity';
-import { Admission } from '../../admission/entities/admission.entity';
+import { Student } from '../../students/entities/student.entity';
+import { Admission } from '../../admissions/entities/admission.entity';
 
 @Entity('academic_sessions')
 export class AcademicSession {
