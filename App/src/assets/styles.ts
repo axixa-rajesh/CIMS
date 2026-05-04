@@ -1,137 +1,178 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export const Colors = {
-  placeholder: '#999',
-  primary: '#007AFF',
-  background: '#f5f5f5',
-  text: '#333',
-  inputBackground: '#f8f7f7',
-  inputBorder: '#ddd',
-  inputText: '#121111',
-  cardBackground: '#ffffff',
-  subText: '#666',
+  primary: '#4F46E5', // Modern Indigo
+  primaryLight: '#EEF2FF',
+  secondary: '#10B981', // Success Green
+  danger: '#EF4444',
+  warning: '#F59E0B',
+  background: '#F9FAFB', // Cool Gray background
+  cardBackground: '#FFFFFF',
+  text: '#111827',
+  textSecondary: '#6B7280',
+  textMuted: '#9CA3AF',
+  inputBackground: '#FFFFFF',
+  inputBorder: '#E5E7EB',
+  headerBackground: '#F3F4F6',
+  divider: '#F3F4F6',
   avatarBackground: '#E3F2FD',
+  placeholder: '#999',
 };
 
 export const GlobalStyles = StyleSheet.create({
-  flex1: { flex: 1, backgroundColor: Colors.background },
-  centerAll: { flex: 1, justifyContent: 'center', padding: 20 },
+  // --- Layout Containers ---
+  flex1: {
+    flex: 1,
+    backgroundColor: Colors.background,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: Colors.background,
+  },
+  scrollContent: {
+    padding: 16,
+    paddingBottom: 100, // Space for FAB
+  },
 
-  loginTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 30,
-    textAlign: 'center',
+  // --- Header Styles ---
+  pageHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: '800',
     color: Colors.text,
+    letterSpacing: -0.5,
+  },
+  headerSubtitle: {
+    fontSize: 13,
+    color: Colors.textSecondary,
+    marginTop: 2,
+  },
+
+  // --- Card Wrapper (Used for Table & Form) ---
+  card: {
+    backgroundColor: Colors.cardBackground,
+    borderRadius: 16,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
+  },
+
+  // --- Futuristic Table Styles ---
+  tableHead: {
+    height: 50,
+    backgroundColor: Colors.headerBackground,
+  },
+  headText: {
+    textAlign: 'center',
+    fontSize: 11,
+    fontWeight: '700',
+    color: Colors.textSecondary,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  row: {
+    height: 65,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: Colors.cardBackground,
+  },
+  rowBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.divider,
+  },
+  cellText: {
+    textAlign: 'center',
+    fontSize: 14,
+    color: Colors.textSecondary,
+  },
+  boldCellText: {
+    color: Colors.text,
+    fontWeight: '600',
+    paddingLeft: 8,
+  },
+
+  // --- Status Pills ---
+  pill: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    alignSelf: 'center',
+  },
+  pillText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
+
+  // --- Modern Form Styles ---
+  formPadding: {
+    padding: 20,
+  },
+  formGroup: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 8,
   },
   input: {
     backgroundColor: Colors.inputBackground,
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 15,
     borderWidth: 1,
     borderColor: Colors.inputBorder,
-    color: Colors.inputText,
+    borderRadius: 10,
+    padding: 12,
+    fontSize: 15,
+    color: Colors.text,
   },
+
+  // --- Buttons ---
   primaryButton: {
     backgroundColor: Colors.primary,
-    padding: 15,
+    paddingVertical: 15,
     borderRadius: 10,
     alignItems: 'center',
-  },
-  buttonText: { color: '#fff', fontSize: 18, fontWeight: '600' },
-
-  header: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
-    color: Colors.text,
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-  },
-  card: {
-    backgroundColor: Colors.cardBackground,
-    width: '48%',
-    padding: 20,
-    borderRadius: 15,
-    marginBottom: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-      },
-      android: { elevation: 3 },
-    }),
-  },
-  iconBox: {
-    backgroundColor: '#6366f1',
-    padding: 8,
-    borderRadius: 8,
-    marginBottom: 12,
-    alignItems: 'center',
     justifyContent: 'center',
   },
-  cardValue: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  cardLabel: {
-    color: '#666',
-    marginTop: 4,
-    textAlign: 'center',
-  },
-
-  userRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.cardBackground,
-    marginHorizontal: 16,
-    marginVertical: 6,
-    padding: 16,
-    borderRadius: 16,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.08,
-        shadowRadius: 4,
-      },
-      android: { elevation: 2 },
-    }),
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: Colors.avatarBackground,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  avatarText: {
-    color: Colors.primary,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  userName: {
+  buttonText: {
+    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
-    color: Colors.text,
   },
-  userEmail: {
-    color: Colors.subText,
-    fontSize: 14,
-    marginTop: 2,
+  toggleBtn: {
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
   },
+  cancelBtn: {
+    backgroundColor: Colors.danger,
+  },
+  toggleBtnText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 12,
+  },
+
+  // --- Floating Action Button (FAB) ---
   fab: {
     position: 'absolute',
     right: 20,
@@ -142,10 +183,44 @@ export const GlobalStyles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 6,
+    elevation: 8,
     shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 6,
+  },
+  fabIcon: {
+    color: '#FFFFFF',
+    fontSize: 30,
+    fontWeight: '300',
+  },
+
+  // --- Dashboard/Stat Cards ---
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  statCard: {
+    backgroundColor: Colors.cardBackground,
+    padding: 15,
+    borderRadius: 12,
+    width: (width - 48) / 3, // Dynamic width calculation
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+  },
+  statLabel: {
+    fontSize: 10,
+    color: Colors.textMuted,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
+  statValue: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: Colors.text,
+    marginTop: 4,
   },
 });

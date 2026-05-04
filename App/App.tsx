@@ -1,10 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import LoginPage from './src/screens/Auth/LoginPage';
 import { GlobalStyles } from './src/assets/styles';
-import UsersPage from './src/screens/Admin/UsersPage';
-import DashboardPage from './src/screens/Dashboard/DashboardPage';
+import AdmissionLeadsPage from './src/screens/Admissions/AdmissionLeadsPage';
 const App = () => {
   return (
     <SafeAreaProvider>
@@ -13,7 +11,7 @@ const App = () => {
           barStyle="dark-content"
           backgroundColor={GlobalStyles.flex1.backgroundColor}
         />
-        <LoginPage />
+        <AdmissionLeadsPage />
       </SafeAreaView>
     </SafeAreaProvider>
   );
