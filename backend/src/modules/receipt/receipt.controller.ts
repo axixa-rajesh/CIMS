@@ -1,16 +1,22 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import { ReceiptService } from './receipt.service';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
 
 @Controller('receipts')
+@UseGuards(RolesGuard)
 export class ReceiptController {
+  constructor(private readonly receiptService: ReceiptService) {}
 
   @Get()
-  getAll() {
-    return { success: true, message: 'getAll receipts - coming soon' };
+  @Roles('ADMIN', 'ACCOUNTS', 'FINANCE')
+  findAll() {
+    return this.receiptService.findAll();
   }
 
-  @Post()
-  create(@Body() body: any) {
-    return { success: true, message: 'create receipt - coming soon' };
+  @Post('generate/:paymentId')
+  @Roles('ADMIN', 'ACCOUNTS')
+  generateReceipt(@Param('paymentId') paymentId: number) {
+    return this.receiptService.generateReceipt(paymentId);
   }
-
 }

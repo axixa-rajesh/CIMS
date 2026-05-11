@@ -1,16 +1,23 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { PaymentService } from './payment.service';
+import { CreatePaymentDto } from './payment.validator';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
 
 @Controller('payments')
+@UseGuards(RolesGuard)
 export class PaymentController {
+  constructor(private readonly paymentService: PaymentService) {}
 
   @Get()
-  getAll() {
-    return { success: true, message: 'getAll payments - coming soon' };
+  @Roles('ADMIN', 'ACCOUNTS', 'FINANCE')
+  findAll() {
+    return this.paymentService.findAll();
   }
 
   @Post()
-  create(@Body() body: any) {
-    return { success: true, message: 'create payment - coming soon' };
+  @Roles('ADMIN', 'ACCOUNTS')
+  addPayment(@Body() dto: CreatePaymentDto) {
+    return this.paymentService.addPayment(dto);
   }
-
 }

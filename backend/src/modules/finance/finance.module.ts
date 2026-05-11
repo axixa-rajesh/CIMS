@@ -4,6 +4,7 @@ import { StudentFeePlanModule } from '../student_fee_plan/studentFeePlan.module'
 import { InvoiceModule } from '../invoice/invoice.module';
 import { PaymentModule } from '../payment/payment.module';
 import { ReceiptModule } from '../receipt/receipt.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 import { ReportModule } from '../report/report.module';
 import { ExportModule } from '../export/export.module';
@@ -15,6 +16,7 @@ import { ExportModule } from '../export/export.module';
     InvoiceModule,
     PaymentModule,
     ReceiptModule,
+    DashboardModule,
 
     ReportModule,
     ExportModule,

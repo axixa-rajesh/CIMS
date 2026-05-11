@@ -1,21 +1,35 @@
-import { Controller, Get, Post, Put, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Body, Param, UseGuards } from '@nestjs/common';
+import { FeeStructureService } from './fee-structure.service';
+import { CreateFeeStructureDto } from './feeStructure.validator';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
 
 @Controller('fee-structures')
+@UseGuards(RolesGuard)
 export class FeeStructureController {
+  constructor(private readonly feeStructureService: FeeStructureService) {}
 
   @Get()
-  getAll() {
-    return { success: true, message: 'getAll fee-structures - coming soon' };
+  @Roles('ADMIN', 'ACCOUNTS', 'FINANCE')
+  findAll() {
+    return this.feeStructureService.findAll();
+  }
+
+  @Get(':id')
+  @Roles('ADMIN', 'ACCOUNTS', 'FINANCE')
+  findOne(@Param('id') id: number) {
+    return this.feeStructureService.findOne(id);
   }
 
   @Post()
-  create(@Body() body: any) {
-    return { success: true, message: 'create fee-structure - coming soon' };
+  @Roles('ADMIN')
+  create(@Body() dto: CreateFeeStructureDto) {
+    return this.feeStructureService.create(dto);
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() body: any) {
-    return { success: true, message: 'update fee-structure - coming soon' };
+  @Roles('ADMIN')
+  update(@Param('id') id: number, @Body() dto: Partial<CreateFeeStructureDto>) {
+    return this.feeStructureService.update(id, dto);
   }
-
-} 
+}
