@@ -13,10 +13,7 @@
     "target": "ES2023",
     "sourceMap": true,
     "outDir": "./dist",
-<<<<<<< HEAD
     "ignoreDeprecations": "5.0",
-=======
->>>>>>> c837772 (Day 1 to Day 3 task completed)
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
@@ -24,11 +21,7 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-<<<<<<< HEAD
-    "noFallthroughCasesInSwitch": false
-=======
     "noFallthroughCasesInSwitch": false,
     "types": ["node", "jest"]
->>>>>>> c837772 (Day 1 to Day 3 task completed)
   }
 }
