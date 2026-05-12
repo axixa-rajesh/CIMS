@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+ //import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { LiveClassesService } from './live-classes.service';
 import { CreateLiveClassDto, UpdateLiveClassDto } from './dto/create-live-class.dto';
 
@@ -6,6 +7,7 @@ import { CreateLiveClassDto, UpdateLiveClassDto } from './dto/create-live-class.
 export class LiveClassesController {
   constructor(private readonly liveClassesService: LiveClassesService) {}
 
+  // @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createLiveClassDto: CreateLiveClassDto) {
     return this.liveClassesService.create(createLiveClassDto);

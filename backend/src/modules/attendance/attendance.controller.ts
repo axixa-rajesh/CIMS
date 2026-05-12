@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+//import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AttendanceService } from './attendance.service';
 import { CreateAttendanceDto, UpdateAttendanceDto } from './dto/create-attendance.dto';
 
@@ -6,6 +7,7 @@ import { CreateAttendanceDto, UpdateAttendanceDto } from './dto/create-attendanc
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
+  //@UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createAttendanceDto: CreateAttendanceDto) {
     return this.attendanceService.create(createAttendanceDto);
