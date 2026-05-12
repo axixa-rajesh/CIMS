@@ -1,4 +1,4 @@
---Test
+-- Test
 INSERT INTO tests (
   id,
   batch_id,
@@ -24,7 +24,45 @@ VALUES (
   'ACTIVE'
 );
 
---results
+-- test_questions
+
+INSERT INTO test_questions (
+  id,
+  test_id,
+  question_text,
+  question_type,
+  marks
+)
+VALUES (
+  UUID(),
+  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
+  'What is 2 + 2?',
+  'MCQ',
+  5
+);
+
+-- test_attempts
+
+INSERT INTO test_attempts (
+  id,
+  test_id,
+  student_id,
+  started_at,
+  submitted_at,
+  obtained_marks,
+  status
+)
+VALUES (
+  UUID(),
+  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
+  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
+  NOW(),
+  NOW(),
+  80,
+  'SUBMITTED'
+);
+
+-- results
 
 INSERT INTO results(
   id,
@@ -49,7 +87,7 @@ VALUES(
   'PUBLISHED'
 );
 
---notice
+-- notices
 
 INSERT INTO notices (
   id,
@@ -71,12 +109,28 @@ VALUES (
   'Institute will remain closed tomorrow',
   'GENERAL',
   NOW(),
-  NOW(),
+  DATE_ADD(NOW(), INTERVAL 7 DAY),
   '33333333-3333-3333-3333-333333333333',
   'ACTIVE'
 );
 
---notification
+-- notice targets
+
+INSERT INTO notice_targets (
+  id,
+  notice_id,
+  target_type,
+  target_id
+)
+VALUES (
+  UUID(),
+  '77777777-7777-7777-7777-777777777777',
+  'BATCH',
+  '11111111-1111-1111-1111-111111111111'
+);
+
+
+-- notification
 
 INSERT INTO notifications (
   id,
@@ -99,7 +153,7 @@ VALUES (
   'ACTIVE'
 );
 
---doubt ticket
+-- doubt ticket
 
 INSERT INTO doubt_tickets (
   id,
@@ -120,4 +174,19 @@ VALUES (
   'Unable to solve equation',
   'HIGH',
   'OPEN'
+);   
+
+-- ticket messages
+
+INSERT INTO ticket_messages (
+  id,
+  ticket_id,
+  sender_user_id,
+  message_text
+)
+VALUES (
+  UUID(),
+  '99999999-9999-9999-9999-999999999999',
+  '66666666-6666-6666-6666-666666666666',
+  'Please explain question number 5 properly.'
 );

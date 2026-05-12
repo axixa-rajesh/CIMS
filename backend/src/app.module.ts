@@ -1,41 +1,32 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FinanceModule } from './modules/finance/finance.module';
-import { FeeStructureModule } from './modules/fee_structure/feeStructure.module';
-import { StudentFeePlanModule } from './modules/student_fee_plan/studentFeePlan.module';
-import { InvoiceModule } from './modules/invoice/invoice.module';
-import { PaymentModule } from './modules/payment/payment.module';
-import { ReceiptModule } from './modules/receipt/receipt.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { ReportModule } from './modules/report/report.module';
-import { ExportModule } from './modules/export/export.module';
-import { ActivityLogModule } from './modules/activity_log/activity-log.module';
+import { TestsModule } from './modules/tests/tests.module';
+import { TestQuestionsModule } from './modules/test-questions/test-questions.module';
+import { TestAttemptsModule } from './modules/test-attempts/test-attempts.module';
+import { ResultsModule } from './modules/results/results.module';
+import { NoticesModule } from './modules/notices/notices.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { DoubtTicketsModule } from './modules/doubt-tickets/doubt-tickets.module';
+import { TicketMessagesModule } from './modules/ticket-messages/ticket-messages.module';
+import { NoticeTargetsModule } from './modules/notice-targets/notice-targets.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
+  imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'sql@123456',
-      database: 'cims',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+
+      autoLoadEntities: true,
       synchronize: false,
-    }),
-    FinanceModule,
-    FeeStructureModule,
-    StudentFeePlanModule,
-    InvoiceModule,
-    PaymentModule,
-    ReceiptModule,
-    DashboardModule,
-    ReportModule,
-    ExportModule,
-    ActivityLogModule,
-  ],
+    }), 
+    
+    TestsModule, TestQuestionsModule, TestAttemptsModule, ResultsModule, NoticesModule, NotificationsModule, DoubtTicketsModule, TicketMessagesModule, NoticeTargetsModule],
   controllers: [AppController],
   providers: [AppService],
 })
