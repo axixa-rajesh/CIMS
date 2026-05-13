@@ -55,7 +55,37 @@ export const GlobalStyles = StyleSheet.create({
     color: Colors.textSecondary,
     marginTop: 2,
   },
-
+  header: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#6366f1', // Indigo primary
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  avatarText: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: '600',
+  },
+  userName: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1a1a1a',
+  },
+  userEmail: {
+    fontSize: 14,
+    color: '#6b7280',
+    marginTop: 2,
+  },
   // --- Card Wrapper (Used for Table & Form) ---
   card: {
     backgroundColor: Colors.cardBackground,
@@ -134,6 +164,12 @@ export const GlobalStyles = StyleSheet.create({
     color: '#374151',
     marginBottom: 8,
   },
+  userRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    marginBottom: 12,
+  },
   input: {
     backgroundColor: Colors.inputBackground,
     borderWidth: 1,
@@ -141,6 +177,7 @@ export const GlobalStyles = StyleSheet.create({
     borderRadius: 10,
     padding: 12,
     fontSize: 15,
+    marginBottom: 20,
     color: Colors.text,
   },
 
@@ -222,5 +259,177 @@ export const GlobalStyles = StyleSheet.create({
     fontWeight: '800',
     color: Colors.text,
     marginTop: 4,
+  },
+  // --- Sidebar Specific Styles ---
+  drawerContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  sidebarUserSection: {
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.divider,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  sidebarAvatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 12, // Matches the squareCard rounding
+    backgroundColor: Colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sidebarAvatarText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  sidebarUserInfo: {
+    marginLeft: 15,
+  },
+  sidebarUserName: {
+    color: Colors.text,
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  sidebarUserSubtitle: {
+    color: Colors.textSecondary,
+    fontSize: 12,
+    marginTop: 2,
+  },
+  sidebarMenuList: {
+    padding: 15,
+  },
+  sidebarSectionHeader: {
+    fontSize: 11,
+    color: Colors.textMuted,
+    fontWeight: '800',
+    marginBottom: 15,
+    letterSpacing: 1,
+    paddingLeft: 10,
+  },
+  sidebarMenuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    marginBottom: 4,
+  },
+  sidebarActiveItem: {
+    backgroundColor: Colors.primaryLight, // Light Indigo wash
+  },
+  sidebarMenuText: {
+    fontSize: 15,
+    color: Colors.textSecondary,
+    fontWeight: '500',
+    marginLeft: 12,
+  },
+  sidebarActiveMenuText: {
+    color: Colors.primary,
+    fontWeight: '700',
+  },
+  sidebarTopNav: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    height: 60,
+    backgroundColor: '#FFF',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.divider,
+  },
+  sidebarHamburger: {
+    width: 30,
+  },
+  hamburgerContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sidebarBar: {
+    height: 2,
+    backgroundColor: Colors.text,
+    width: 22,
+    borderRadius: 2,
+    marginVertical: 2.5,
+  },
+  // --- Dashboard Grid System ---
+  grid: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+
+  // This matches the square layout seen in your recent progress
+  dashboardCard: {
+    backgroundColor: Colors.cardBackground,
+    borderRadius: 24,
+    padding: 20,
+    width: '48%', // Two cards per row
+    aspectRatio: 1, // Keeps it a perfect square
+    marginBottom: 16,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
+  },
+
+  iconBox: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: Colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+
+  cardValue: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: Colors.text,
+    letterSpacing: -0.5,
+  },
+
+  cardLabel: {
+    fontSize: 13,
+    color: Colors.textSecondary,
+    marginTop: 2,
+    fontWeight: '500',
+  },
+  // --- Login/Auth Styles ---
+  centerAll: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 30,
+    backgroundColor: Colors.background,
+  },
+  loginTitle: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: Colors.text,
+    marginBottom: 8,
+    textAlign: 'center',
+    letterSpacing: -1,
+  },
+  loginSubtitle: {
+    fontSize: 15,
+    color: Colors.textSecondary,
+    marginBottom: 32,
+    textAlign: 'center',
   },
 });

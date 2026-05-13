@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { GlobalStyles } from '../../assets/styles';
 import { Table, Row } from 'react-native-table-component';
-import FormShell from '../../components/FormShells';
+import FormShell from '../../components/Shells/FormShells';
 
 const BatchesPage = () => {
     const [viewMode, setViewMode] = useState<'table' | 'form'>('table');
