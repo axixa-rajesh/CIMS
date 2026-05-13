@@ -12,7 +12,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ReportModule } from './modules/report/report.module';
 import { ExportModule } from './modules/export/export.module';
 import { ActivityLogModule } from './modules/activity_log/activity-log.module';
-
+import { DatabaseModule } from './database/database.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -20,7 +20,7 @@ import { ActivityLogModule } from './modules/activity_log/activity-log.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'sql@123456',
+      password: '7890',
       database: 'cims',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
@@ -35,6 +35,7 @@ import { ActivityLogModule } from './modules/activity_log/activity-log.module';
     ReportModule,
     ExportModule,
     ActivityLogModule,
+    DatabaseModule, 
   ],
   controllers: [AppController],
   providers: [AppService],
