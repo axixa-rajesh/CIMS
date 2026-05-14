@@ -20,7 +20,7 @@ import { ActivityLogModule } from './modules/activity_log/activity-log.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'sql@123456',
+      password: '',
       database: 'cims',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
