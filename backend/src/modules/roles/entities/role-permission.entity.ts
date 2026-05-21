@@ -5,6 +5,6 @@ import {
 
 @Entity('role_permissions')
 export class RolePermission {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 }

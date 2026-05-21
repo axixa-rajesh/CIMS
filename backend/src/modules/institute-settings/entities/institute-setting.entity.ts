@@ -6,8 +6,8 @@ import {
 
 @Entity('institute_settings')
 export class InstituteSetting {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   key: string;

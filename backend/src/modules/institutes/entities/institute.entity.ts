@@ -6,8 +6,8 @@ import {
 
 @Entity('institutes')
 export class Institute {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;

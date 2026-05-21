@@ -6,8 +6,8 @@ import {
 
 @Entity('academic_sessions')
 export class AcademicSession {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   session_name: string;

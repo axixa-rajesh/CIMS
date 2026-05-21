@@ -6,8 +6,8 @@ import {
 
 @Entity('branches')
 export class Branch {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;

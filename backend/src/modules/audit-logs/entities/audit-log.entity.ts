@@ -6,8 +6,8 @@ import {
 
 @Entity('audit_logs')
 export class AuditLog {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   action: string;
